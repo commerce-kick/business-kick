@@ -4,7 +4,6 @@ import { Search, ShoppingCart, User } from "lucide-react"
 import { Suspense } from "react"
 
 import { Button } from "#/components/ui/button"
-import { Separator } from "#/components/ui/separator"
 import { Skeleton } from "#/components/ui/skeleton"
 import { rootCategoriesQuery } from "#/lib/query/catalog"
 
@@ -17,8 +16,6 @@ export function SiteHeader() {
 				<Link to="/" className="font-semibold text-lg tracking-tight">
 					Meridian
 				</Link>
-
-				<Separator orientation="vertical" className="hidden h-6 md:block" />
 
 				<Suspense fallback={<NavSkeleton />}>
 					<CategoryNav />
