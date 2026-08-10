@@ -120,7 +120,7 @@ function CategoryPage() {
 						<a
 							key={child.id}
 							href={`/c/${child.slug}`}
-							className="rounded-full border border-border/60 px-3 py-1.5 text-sm transition-colors hover:bg-muted"
+							className="rounded-full border px-3 py-1.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
 						>
 							{child.name}
 						</a>

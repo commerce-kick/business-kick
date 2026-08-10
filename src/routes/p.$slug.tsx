@@ -4,6 +4,12 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router"
 import { Breadcrumbs } from "#/components/catalog/breadcrumbs"
 import { Badge } from "#/components/ui/badge"
 import { Button } from "#/components/ui/button"
+import {
+	Card,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "#/components/ui/card"
 import { Separator } from "#/components/ui/separator"
 import { formatMoney } from "#/lib/format"
 import { productPageQuery } from "#/lib/query/catalog"
@@ -116,15 +122,17 @@ function ProductPage() {
 								) : null}
 							</div>
 						) : (
-							<div className="rounded-lg border border-border/60 bg-muted/30 p-4">
-								<p className="text-sm font-medium">
-									Pricing is specific to your account
-								</p>
-								<p className="mt-1 text-sm text-muted-foreground">
-									Sign in with your business account to see contract pricing and
-									availability.
-								</p>
-							</div>
+							<Card size="sm" className="bg-muted/40">
+								<CardHeader>
+									<CardTitle className="text-sm">
+										Pricing is specific to your account
+									</CardTitle>
+									<CardDescription>
+										Sign in with your business account to see contract pricing
+										and availability.
+									</CardDescription>
+								</CardHeader>
+							</Card>
 						)}
 					</div>
 
@@ -177,7 +185,7 @@ function ProductPage() {
 								{product.attributes.map((attr) => (
 									<div
 										key={attr.label}
-										className="flex justify-between gap-4 border-b border-border/40 py-2 text-sm"
+										className="flex justify-between gap-4 border-b py-2 text-sm"
 									>
 										<dt className="text-muted-foreground">{attr.label}</dt>
 										<dd className="font-medium">{attr.value}</dd>
@@ -203,7 +211,7 @@ function ProductGallery({
 
 	return (
 		<div>
-			<div className="aspect-square overflow-hidden rounded-xl border border-border/60 bg-muted/30">
+			<div className="aspect-square overflow-hidden rounded-xl border bg-muted">
 				{primary ? (
 					<img
 						src={primary.url}
@@ -211,7 +219,7 @@ function ProductGallery({
 						className="size-full object-cover"
 					/>
 				) : (
-					<div className="flex size-full items-center justify-center text-sm text-muted-foreground">
+					<div className="flex size-full items-center justify-center text-muted-foreground text-sm">
 						No image available
 					</div>
 				)}
@@ -222,7 +230,7 @@ function ProductGallery({
 					{images.slice(1, 6).map((image) => (
 						<div
 							key={image.url}
-							className="aspect-square overflow-hidden rounded-lg border border-border/60 bg-muted/30"
+							className="aspect-square overflow-hidden rounded-lg border bg-muted"
 						>
 							<img
 								src={image.url}

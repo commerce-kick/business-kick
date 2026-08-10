@@ -1,4 +1,14 @@
+import { PackageSearch } from "lucide-react"
+
+import {
+	Empty,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "#/components/ui/empty"
 import type { ProductSummary } from "#/lib/salesforce/types/product"
+
 import { ProductCard } from "./product-card"
 
 export function ProductGrid({
@@ -10,9 +20,15 @@ export function ProductGrid({
 }) {
 	if (products.length === 0) {
 		return (
-			<div className="rounded-xl border border-dashed border-border py-20 text-center text-sm text-muted-foreground">
-				{emptyMessage}
-			</div>
+			<Empty>
+				<EmptyHeader>
+					<EmptyMedia variant="icon">
+						<PackageSearch />
+					</EmptyMedia>
+					<EmptyTitle>Nothing to show</EmptyTitle>
+					<EmptyDescription>{emptyMessage}</EmptyDescription>
+				</EmptyHeader>
+			</Empty>
 		)
 	}
 

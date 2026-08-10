@@ -32,19 +32,19 @@ function AccountPage() {
 			<h1 className="text-3xl font-semibold tracking-tight">Your account</h1>
 
 			<dl className="mt-8 grid gap-4">
-				<div className="flex justify-between gap-4 border-b border-border/40 py-3">
+				<div className="flex justify-between gap-4 border-b py-3">
 					<dt className="text-sm text-muted-foreground">Name</dt>
 					<dd className="text-sm font-medium">
 						{session?.user.displayName ?? "—"}
 					</dd>
 				</div>
-				<div className="flex justify-between gap-4 border-b border-border/40 py-3">
+				<div className="flex justify-between gap-4 border-b py-3">
 					<dt className="text-sm text-muted-foreground">Email</dt>
 					<dd className="text-sm font-medium">
 						{session?.user.email ?? session?.user.username ?? "—"}
 					</dd>
 				</div>
-				<div className="flex justify-between gap-4 border-b border-border/40 py-3">
+				<div className="flex justify-between gap-4 border-b py-3">
 					<dt className="text-sm text-muted-foreground">Buyer account</dt>
 					<dd className="font-mono text-sm">
 						{session?.effectiveAccountId ?? "—"}

@@ -4,6 +4,7 @@ import { Search, ShoppingCart, User } from "lucide-react"
 import { Suspense } from "react"
 
 import { Button } from "#/components/ui/button"
+import { Separator } from "#/components/ui/separator"
 import { Skeleton } from "#/components/ui/skeleton"
 import { rootCategoriesQuery } from "#/lib/query/catalog"
 
@@ -11,11 +12,13 @@ export function SiteHeader() {
 	const { session } = useRouteContext({ from: "__root__" })
 
 	return (
-		<header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
-			<div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-6">
-				<Link to="/" className="text-lg font-semibold tracking-tight">
+		<header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+			<div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-6">
+				<Link to="/" className="font-semibold text-lg tracking-tight">
 					Meridian
 				</Link>
+
+				<Separator orientation="vertical" className="hidden h-6 md:block" />
 
 				<Suspense fallback={<NavSkeleton />}>
 					<CategoryNav />
@@ -50,13 +53,15 @@ export function SiteHeader() {
 							render={<Link to="/account" />}
 						>
 							<User />
-							{session.user.displayName ?? session.user.username}
+							<span className="max-w-32 truncate">
+								{session.user.displayName ?? session.user.username}
+							</span>
 						</Button>
 					) : (
 						<Button
 							size="sm"
 							nativeButton={false}
-							render={<Link to="/login" />}
+							render={<Link to="/login" search={{ redirect: undefined }} />}
 						>
 							Sign in
 						</Button>
@@ -79,8 +84,8 @@ function CategoryNav() {
 					key={category.id}
 					to="/c/$slug"
 					params={{ slug: category.slug }}
-					className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-					activeProps={{ className: "text-foreground bg-muted" }}
+					className="rounded-md px-3 py-1.5 text-muted-foreground text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+					activeProps={{ className: "bg-accent text-accent-foreground" }}
 				>
 					{category.name}
 				</Link>
@@ -92,8 +97,8 @@ function CategoryNav() {
 function NavSkeleton() {
 	return (
 		<div className="hidden items-center gap-2 md:flex">
-			{[0, 1, 2].map((i) => (
-				<Skeleton key={i} className="h-5 w-20" />
+			{["a", "b", "c"].map((k) => (
+				<Skeleton key={k} className="h-5 w-20" />
 			))}
 		</div>
 	)
